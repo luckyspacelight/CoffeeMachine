@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CoffeeMachineTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-01-17T21:12:56" hostname="PC-EXODUS" time="0.582">
+  <properties/>
+  <testcase name="start" classname="CoffeeMachineTest" time="0.582"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+The coffee machine has:
+400 ml of water
+540 ml of milk
+120 g of coffee beans
+9 disposable cups
+$550 of money
+
+Write action (buy, fill, take):
+> take
+The coffee machine has:
+400 ml of water
+540 ml of milk
+120 g of coffee beans
+9 disposable cups
+$0 of money
+?[1;31m
+Start test 2?[0m
+The coffee machine has:
+400 ml of water
+540 ml of milk
+120 g of coffee beans
+9 disposable cups
+$550 of money
+
+Write action (buy, fill, take):
+> buy
+What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:
+> 1
+The coffee machine has:
+150 ml of water
+540 ml of milk
+104 g of coffee beans
+8 disposable cups
+$554 of money
+?[1;31m
+Start test 3?[0m
+The coffee machine has:
+400 ml of water
+540 ml of milk
+120 g of coffee beans
+9 disposable cups
+$550 of money
+
+Write action (buy, fill, take):
+> buy
+What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:
+> 2
+The coffee machine has:
+50 ml of water
+465 ml of milk
+100 g of coffee beans
+8 disposable cups
+$557 of money
+?[1;31m
+Start test 4?[0m
+The coffee machine has:
+400 ml of water
+540 ml of milk
+120 g of coffee beans
+9 disposable cups
+$550 of money
+
+Write action (buy, fill, take):
+> buy
+What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:
+> 3
+The coffee machine has:
+200 ml of water
+440 ml of milk
+108 g of coffee beans
+8 disposable cups
+$556 of money
+?[1;31m
+Start test 5?[0m
+The coffee machine has:
+400 ml of water
+540 ml of milk
+120 g of coffee beans
+9 disposable cups
+$550 of money
+
+Write action (buy, fill, take):
+> fill
+Write how many ml of water you want to add:
+> 2001
+Write how many ml of milk you want to add:
+> 510
+Write how many grams of coffee beans you want to add:
+> 101
+Write how many disposable cups you want to add:
+> 21
+The coffee machine has:
+2401 ml of water
+1050 ml of milk
+221 g of coffee beans
+30 disposable cups
+$550 of money
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
