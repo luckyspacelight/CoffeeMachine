@@ -7,6 +7,8 @@ public class CoffeeMachine {
 
     static Scanner scanner = new Scanner(System.in);
 
+    static boolean isSwitchedOn = true;   // The coffee machine is on
+
     // What one cup of coffee contains
     static final int WATER_PER_ONE_CUP = 200;
     static final int MILK_PER_ONE_CUP = 50;
@@ -38,54 +40,98 @@ public class CoffeeMachine {
 
 
     public static void main(String[] args) {
+
         //ingredientCalculator();
         //estimateNumberOfServings();
-        processUserQuery();
+
+        while (isSwitchedOn) {
+            processUserQuery();
+        }
+
     }
 
     private static void processUserQuery() {
 
-        showCoffeeMachineState();
-
-        System.out.println("\nWrite action (buy, fill, take):");
+        System.out.println("\nWrite action (buy, fill, take, remaining, exit):");
         String userQuery = scanner.nextLine();
 
         switch (userQuery) {
             case "buy" -> buyTypeOfCoffee();
             case "fill" -> fillTheCoffeeMachine();
             case "take" -> takeAllTheMoney();
+            case "remaining" -> showCoffeeMachineState();
+            case "exit" -> isSwitchedOn = false;
         }
+
     }
 
     private static void buyTypeOfCoffee() {
 
-        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:");
-        int coffeeType = scanner.nextInt();
+        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
+        String coffeeType = scanner.nextLine();
+
+        String whatIsMissing = "";
+        boolean isBack = false;
 
         switch (coffeeType) {
-            case 1 -> {
-                totalWater -= ESPRESSO_WATER;
-                totalCoffeeBeans -= ESPRESSO_COFFEE_BEANS;
-                disposableCups--;
-                cashRegister += ESPRESSO_PRICE;
+            case "1" -> {
+                if (totalWater >= ESPRESSO_WATER && totalCoffeeBeans >= ESPRESSO_COFFEE_BEANS && disposableCups >= 1) {
+                    totalWater -= ESPRESSO_WATER;
+                    totalCoffeeBeans -= ESPRESSO_COFFEE_BEANS;
+                    disposableCups--;
+                    cashRegister += ESPRESSO_PRICE;
+                } else {
+                    if (ESPRESSO_WATER > totalWater) whatIsMissing = "water";
+                    if (ESPRESSO_COFFEE_BEANS > totalCoffeeBeans) whatIsMissing = "coffee beans";
+                    if (disposableCups < 1) whatIsMissing = "cups";
+                }
             }
-            case 2 -> {
-                totalWater -= LATTE_WATER;
-                totalMilk -= LATTE_MILK;
-                totalCoffeeBeans -= LATTE_COFFEE_BEANS;
-                disposableCups--;
-                cashRegister += LATTE_PRICE;
+            case "2" -> {
+                if (totalWater >= LATTE_WATER && totalMilk >= LATTE_MILK
+                        && totalCoffeeBeans >= LATTE_COFFEE_BEANS && disposableCups >= 1) {
+                    totalWater -= LATTE_WATER;
+                    totalMilk -= LATTE_MILK;
+                    totalCoffeeBeans -= LATTE_COFFEE_BEANS;
+                    disposableCups--;
+                    cashRegister += LATTE_PRICE;
+                } else {
+                    if (LATTE_WATER > totalWater) whatIsMissing = "water";
+                    if (LATTE_MILK > totalWater) whatIsMissing = "milk";
+                    if (LATTE_COFFEE_BEANS > totalCoffeeBeans) whatIsMissing = "coffee beans";
+                    if (disposableCups < 1) whatIsMissing = "cups";
+                }
             }
-            case 3 -> {
-                totalWater -= CAPPUCCINO_WATER;
-                totalMilk -= CAPPUCCINO_MILK;
-                totalCoffeeBeans -= CAPPUCCINO_COFFEE_BEANS;
-                disposableCups--;
-                cashRegister += CAPPUCCINO_PRICE;
+            case "3" -> {
+
+                if (totalWater >= CAPPUCCINO_WATER && totalMilk >= CAPPUCCINO_MILK
+                        && totalCoffeeBeans >= CAPPUCCINO_COFFEE_BEANS && disposableCups >= 1) {
+                    totalWater -= CAPPUCCINO_WATER;
+                    totalMilk -= CAPPUCCINO_MILK;
+                    totalCoffeeBeans -= CAPPUCCINO_COFFEE_BEANS;
+                    disposableCups--;
+                    cashRegister += CAPPUCCINO_PRICE;
+                } else {
+                    if (CAPPUCCINO_WATER > totalWater) whatIsMissing = "water";
+                    if (CAPPUCCINO_MILK > totalWater) whatIsMissing = "milk";
+                    if (CAPPUCCINO_COFFEE_BEANS > totalCoffeeBeans) whatIsMissing = "coffee beans";
+                    if (disposableCups < 1) whatIsMissing = "cups";
+                }
+            }
+            case "back" -> {
+                isBack = true;
+                processUserQuery();
             }
         }
 
-        showCoffeeMachineState();
+        // Print a message
+        if (isBack == false) {
+            if (whatIsMissing.isEmpty()) {
+                System.out.println("I have enough resources, making you a coffee!");
+            } else {
+                System.out.printf("%nSorry, not enough %s!%n", whatIsMissing);
+            }
+        }
+
     }
 
     private static void fillTheCoffeeMachine() {
@@ -102,19 +148,24 @@ public class CoffeeMachine {
         System.out.println("Write how many disposable cups you want to add:");
         disposableCups += scanner.nextInt();
 
-        showCoffeeMachineState();
+        // Add nextLine just to discard the old \n character
+        //scanner.nextLine();
+        // scanner.skip("[\r\n]+");
+        scanner.skip("[\n]");
+
     }
 
     private static void takeAllTheMoney() {
 
+        System.out.printf("I gave you $%d%n", cashRegister);
+
         // Give all the money from selling coffee
         cashRegister = 0;
 
-        showCoffeeMachineState();
     }
 
     private static void showCoffeeMachineState() {
-        System.out.println("The coffee machine has:");
+        System.out.println("\nThe coffee machine has:");
         System.out.printf("%d ml of water%n", totalWater);
         System.out.printf("%d ml of milk%n", totalMilk);
         System.out.printf("%d g of coffee beans%n", totalCoffeeBeans);
@@ -166,4 +217,3 @@ public class CoffeeMachine {
         System.out.printf("%n%d g of coffee beans", COFFEE_BEANS_PER_ONE_CUP * cupsOfCoffee);
     }
 }
-
