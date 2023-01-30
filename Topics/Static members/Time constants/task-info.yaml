@@ -1,0 +1,28 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    class TimeConstantsDemo {
+
+        public static void main(String[] args) {
+            // print SECONDS_IN_DAY
+            // print SECONDS_IN_WEEK
+        }
+    }
+
+    final class TimeConstants {
+        public static final int SECOND = 1;
+        public static final int SECONDS_IN_MINUTE = 60 * SECOND;
+        public static final int SECONDS_IN_HOUR = 60 * SECONDS_IN_MINUTE;
+        // write your code here
+
+        private TimeConstants() { }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/12513#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sat, 28 Jan 2023 19:01:28 UTC"
+record: -1

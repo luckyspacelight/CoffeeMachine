@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Coffee_Machine-task-out" external.linked.project.path="$MODULE_DIR$/../../../../../Coffee Machine/task/out" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Coffee Machine" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Coffee Machine/task/out">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Coffee Machine/task/out/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Coffee Machine/task/out/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Coffee Machine/task/out/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

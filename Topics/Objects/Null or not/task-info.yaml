@@ -1,0 +1,32 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    import java.util.Scanner;
+
+    class Solution {
+
+        public void printIsNull(Object o) {
+            // write your code here
+        }
+    }
+
+    // Do not change the code below
+    class Main {
+        public static void main(String[] args) {
+            Solution solution = new Solution();
+            Scanner scanner = new Scanner(System.in);
+            while (scanner.hasNextLine()) {
+                Object obj = "null".equals(scanner.nextLine()) ? null : new Object();
+                solution.printIsNull(obj);
+            }
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/19626#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Thu, 26 Jan 2023 17:44:22 UTC"
+record: -1

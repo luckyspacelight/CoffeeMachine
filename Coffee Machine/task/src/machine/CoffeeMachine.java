@@ -50,20 +50,49 @@ public class CoffeeMachine {
 
     }
 
+    enum CoffeeState {
+        BUY,
+        FILL,
+        TAKE,
+        REMAINING,
+        EXIT
+    }
+
+    static CoffeeState coffeeState;
+
     private static void processUserQuery() {
 
         System.out.println("\nWrite action (buy, fill, take, remaining, exit):");
         String userQuery = scanner.nextLine();
 
+
         switch (userQuery) {
-            case "buy" -> buyTypeOfCoffee();
-            case "fill" -> fillTheCoffeeMachine();
-            case "take" -> takeAllTheMoney();
-            case "remaining" -> showCoffeeMachineState();
-            case "exit" -> isSwitchedOn = false;
+            case "buy":
+                coffeeState = CoffeeState.BUY;
+                break;
+            case "fill":
+                coffeeState = CoffeeState.FILL;
+                break;
+            case "take":
+                coffeeState = CoffeeState.TAKE;
+                break;
+            case "remaining":
+                coffeeState = CoffeeState.REMAINING;
+                break;
+            case "exit":
+                coffeeState = CoffeeState.EXIT;
+                break;
         }
 
+        switch (coffeeState) {
+            case BUY -> buyTypeOfCoffee();
+            case FILL -> fillTheCoffeeMachine();
+            case TAKE -> takeAllTheMoney();
+            case REMAINING -> showCoffeeMachineState();
+            case EXIT -> isSwitchedOn = false;
+        }
     }
+
 
     private static void buyTypeOfCoffee() {
 

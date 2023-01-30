@@ -1,0 +1,19 @@
+<h2>Log events</h2>
+<p>Suppose, we have a utility method to capitalize strings:</p>
+<pre><code class="language-java">class Util {
+    public static String capitalize(String str) {
+        if (str == null || str.isBlank()) {
+            return str;
+        }
+
+        if (str.length() == 1) {
+            return str.toUpperCase();
+        }
+
+        return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+    }
+}</code></pre>
+<p>Your task is to add some logging to this method so it prints the input string and the string to be returned by the method in the following format:</p>
+<pre><code class="language-java">Before: string
+After: String</code></pre>
+<p>where <code class="language-java">string</code> is an example of the input string. As you can see, the method has three execution paths and they all must be logged.</p><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">string</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">Before: string<br>After: String</code></pre><br><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">Capitalized</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">Before: Capitalized<br>After: Capitalized</code></pre><br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 5 seconds</font><br><br>

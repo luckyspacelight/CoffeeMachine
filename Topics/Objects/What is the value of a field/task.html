@@ -1,0 +1,21 @@
+<h2>What is the value of a field</h2>
+<p>Suppose you have the following class in your program:</p>
+
+<pre><code class="language-java">class Hotel {
+    String name;
+    String address;
+    int rating;
+}</code></pre>
+
+<p>There are several objects of the class:</p>
+
+<pre><code class="language-java">Hotel h1 = new Hotel();
+Hotel h2 = new Hotel();
+Hotel h3 = h2;
+
+h2.rating = 9;
+h3.rating = 8;
+h1.rating = 7;
+</code></pre>
+
+<p>What is the value of <strong><code class="language-java">h2.rating</code></strong> after executing the code above?</p>

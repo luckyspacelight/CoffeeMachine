@@ -1,0 +1,128 @@
+<h2>Static members</h2>
+<p>All objects of a class have the same fields and methods, but the values of object fields are usually different. At the same time, a class may also have fields and methods which are common for all objects. Such fields and methods are known as <strong>static members,</strong> which are declared<strong> </strong>with<strong> </strong>the <code class="language-java">static</code> keyword.</p>
+<p>In this topic, you will learn how to use static class members. As a bonus, you will finally understand the part that the <code class="language-java">static</code> keyword plays in the declaration of the <code class="language-java">main</code> method.</p>
+<h5 id="class-variables" style="text-align: center;">Class variables</h5>
+<p>A <strong>class variable (static field)</strong> is a field declared with the <code class="language-java">static</code> keyword. It can have any primitive or reference type, just like a regular instance field. A static field has the same value for all instances of the class. It belongs to the class, rather than to an instance of the class.</p>
+<p>If we want all instances of a class to share a common value, for example, a global variable, it's better to declare it as static. This can save us some memory because a single copy of a static variable is shared by all created objects.</p>
+<p>Static variables can be accessed directly by the class name. To access a static field, you should write</p>
+<pre><code class="language-java">ClassName.fieldName;</code></pre>
+<p>Let's look at an example. Here is a class with two public static variables:</p>
+<pre><code class="language-java">class SomeClass {
+
+    public static String staticStringField;
+
+    public static int staticIntField;
+} </code></pre>
+<p>We can set their values and get them:</p>
+<pre><code class="language-java">SomeClass.staticIntField = 10;
+SomeClass.staticStringField = "it's a static member";
+
+System.out.println(SomeClass.staticIntField); // It prints "10"
+System.out.println(SomeClass.staticStringField); // It prints "it's a static member"</code></pre>
+<p> </p>
+<p></p><div class="alert alert-warning">Generally, it's not a good idea to declare <strong>non-final</strong> <strong>public static fields</strong>, here we just used them as an example.</div>
+<p> </p>
+<p>We can also access the value of a static field through an instance of the class.</p>
+<pre><code class="language-java">SomeClass.staticIntField = 30;
+
+SomeClass instance = new SomeClass();
+
+System.out.println(instance.staticIntField); // It prints "30"</code></pre>
+<p>Let's see a more complex example. Here is a class with a static field named <code class="language-java">lastCreated</code>. The field stores the date of the last created instance.</p>
+<pre><code class="language-java">public class SomeClass {
+
+    public static Date lastCreated;
+
+    public SomeClass() {
+        lastCreated = new Date();
+    }
+}</code></pre>
+<p>The value of the static field is changed in the class constructor every time a new object is created.</p>
+<p>The code below creates two instances and outputs intermediate results:</p>
+<pre><code class="language-java">System.out.println(SomeClass.lastCreated);
+
+SomeClass instance1 = new SomeClass();
+System.out.println(SomeClass.lastCreated);
+
+SomeClass instance2 = new SomeClass();
+System.out.println(SomeClass.lastCreated); </code></pre>
+<p>In my case, the results were the following:</p>
+<pre><code class="language-java">null
+Sun Aug 20 17:49:24 YEKT 2017
+Sun Aug 20 17:49:25 YEKT 2017</code></pre>
+<h5 id="class-constants" style="text-align: center;">Class constants</h5>
+<p>Static fields with the <code class="language-java">final</code> keyword are <strong>class constants</strong>, which means they cannot be changed. According to the naming convention, constant fields should always be written in uppercase with an underscore (<code class="language-java">_</code>) to separate parts of the name.</p>
+<p>The standard class <code class="language-java">Math</code> , for example, contains two static constants:</p>
+<pre><code class="language-java">public static final double E = 2.7182818284590452354;
+
+public static final double PI = 3.14159265358979323846;</code></pre>
+<p>Constants are often public, but it's not a rule.</p>
+<p> To see how they work in an example, let's declare a class named <code class="language-java">Physics</code> with two static constants:</p>
+<pre><code class="language-java">class Physics {
+
+    /**
+     * The speed of light in a vacuum (m/s)
+     */
+    public static final long SPEED_OF_LIGHT = 299_792_458;
+
+    /**
+     * Electron mass (kg)
+     */
+    public static final double ELECTRON_MASS = 9.10938356e-31;
+}</code></pre>
+<p>To use the constants, let's write the following code:</p>
+<pre><code class="language-java">System.out.println(Physics.ELECTRON_MASS); // 9.10938356E-31
+System.out.println(Physics.SPEED_OF_LIGHT); // 299792458</code></pre>
+<p>Since those fields are constants, we cannot change their values. If we try to do it, we'll get an error:</p>
+<pre><code class="language-java">Physics.ELECTRON_MASS = 10; // compile-time error</code></pre>
+<h5 id="class-methods" style="text-align: center;">Class methods</h5>
+<p>A class may have <strong>static methods</strong> as well as static fields. Such methods are also known as <strong>class methods</strong>. A static method can be accessed by the class name and doesn't require an object of the class.</p>
+<p>Static methods can be called directly with the class name. To access a method, you should write</p>
+<pre><code class="language-java">ClassName.staticMethodName(args);</code></pre>
+<p>A static method may have arguments like a regular instance method or it may well have no arguments. But, unlike instance methods, static methods have several special features:</p>
+<ul>
+<li>a static method can access only static fields and cannot access non-static fields;</li>
+<li>a static method can invoke another static method, but it cannot invoke an instance method;</li>
+<li>a static method cannot refer to <code class="language-java">this</code> keyword because there is no instance in the static context.</li>
+</ul>
+<p>Instance methods, however, can access static fields and methods.</p>
+<p> </p>
+<p></p><div class="alert alert-primary">Static methods are often used as <strong>utility methods</strong> that are the same for the whole project. As an example, you can create a class with only static methods for performing typical math operations.</div>
+<p> </p>
+<p>The Java class library provides a lot of static methods for different classes. Here are just a few of them:</p>
+<ul>
+<li>the <code class="language-java">Math</code> class has a lot of static methods, such as <code class="language-java">Math.min(a, b)</code>, <code class="language-java">Math.abs(val)</code>, <code class="language-java">Math.pow(x, y)</code> and so on;</li>
+<li>the <code class="language-java">Arrays</code> class has a lot of static methods for processing arrays such as <code class="language-java">toString(...)</code>;</li>
+<li><code class="language-java">Long.valueOf(...)</code>, <code class="language-java">Integer.parseInt(...)</code>, <code class="language-java">String.valueOf(...)</code> are static methods too.</li>
+</ul>
+<p>Here is a class with one constructor, a static method and an instance method.</p>
+<pre><code class="language-java">public class SomeClass {
+    
+    public SomeClass() {
+        invokeAnInstanceMethod(); // this is possible here
+        invokeAStaticMethod();    // this is possible here too
+    }
+    
+    public static void invokeAStaticMethod() { 
+        // it's impossible to invoke invokeAnInstanceMethod() here
+    }
+    
+    public void invokeAnInstanceMethod() { 
+        invokeAStaticMethod();  // this is possible too
+    }
+}</code></pre>
+<p>This example shows that you can invoke a static method from the instance context (constructors and instance methods), but you can't invoke an instance method from a static context.</p>
+<p>The only way to call an instance method from a static one is to provide a reference to this instance as an argument. You can also create objects of other classes and call their methods in a similar way. Here's an example:</p>
+<pre><code class="language-java">public static void invokeAStaticMethod(SomeClass someClassInstance) {
+
+    // calling instance method from static context by passing instance as an argument
+    someClassInstance.invokeAnInstanceMethod(); 
+
+    // calling instance and static methods of AnotherClass instance
+    AnotherClass anotherClassInstance = new AnotherClass();
+    anotherClassInstance.invokeAnotherClassInstanceMethod();
+    anotherClassInstance.invokeAnotherClassStaticMethod();
+}</code></pre>
+<p>An example of a static method is the <code class="language-java">main</code> method. It should always be static.</p>
+<h5 id="conclusion" style="text-align: center;">Conclusion</h5>
+<p>In this lesson, we discussed static fields and methods and some situations where we can use them. It is important to remember that static members cannot access the values of object fields since there is no instance context (<code class="language-java">this</code>). Nonetheless, they are a good option for providing a set of common constants (together with <code class="language-java">final</code>) and utility methods for the whole project. We will consider other helpful ways of using static members in the next topics.</p>

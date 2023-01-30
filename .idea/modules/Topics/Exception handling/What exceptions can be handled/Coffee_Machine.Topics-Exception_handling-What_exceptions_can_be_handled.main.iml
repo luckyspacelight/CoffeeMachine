@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Exception_handling-What_exceptions_can_be_handled:main" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Exception handling/What exceptions can be handled" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="Coffee Machine" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../../../../Topics/Exception handling/What exceptions can be handled/out/production/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Exception handling/What exceptions can be handled/src">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../Topics/Exception handling/What exceptions can be handled/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
